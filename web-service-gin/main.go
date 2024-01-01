@@ -28,6 +28,7 @@ func postAlbum(c *gin.Context) {
 	var newAlbum album
 	if err := c.BindJSON(&newAlbum); err != nil {
 		fmt.Println("the error is ", err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON"})
 		return
 	}
 	albums = append(albums, newAlbum)
